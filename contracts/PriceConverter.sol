@@ -24,7 +24,7 @@ library PriceConverter {
         AggregatorV3Interface priceFeed
     ) internal view returns (uint256) {
         uint256 ethPrice = getPrice(priceFeed); // Call above contract with the priceFeed contract
-        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1000000000000000000;
+        uint256 ethAmountInUsd = (ethPrice * ethAmount) / 1 ether;
         // the actual ETH/USD conversation rate, after adjusting the extra 0s.
         return ethAmountInUsd;
     }
