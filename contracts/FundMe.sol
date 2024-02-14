@@ -1,11 +1,10 @@
 // SPDX-License-Identifier: MIT
-// 1. Pragma
 pragma solidity ^0.8.20;
-// 2. Imports
+
 import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 import "./PriceConverter.sol";
 
-error FundMe__NotOwner(); // Convention to start with name of contract ect.
+error FundMe__NotOwner(); // Convention to start with name of contract ect. for custom error message
 
 // Accepts the funding sent by users
 contract FundMe {
@@ -40,7 +39,7 @@ contract FundMe {
         );
         // require(PriceConverter.getConversionRate(msg.value) >= MINIMUM_USD, "You need to spend more ETH!");
         s_addressToAmountFunded[msg.sender] += msg.value;
-        s_funders.push(msg.sender);
+        s_funders.push(msg.sender); // Update amount being funded
     }
 
     // Allows the owner of the contract to withdraw the funds
@@ -59,5 +58,27 @@ contract FundMe {
         // payable(msg.sender).transfer(address(this).balance); However better to use .call method
         (bool success, ) = i_owner.call{value: address(this).balance}(""); // Send the balance of the contract to owner
         require(success);
+    }
+
+    function getAddressToAmountFunded( // Get the amount this address has sent to contract thus far
+        address fundingAddress
+    ) public view returns (uint256) {
+        return s_addressToAmountFunded[fundingAddress];
+    }
+
+    function getVersion() public view returns (uint256) { // Get the version of the price feed being used
+        return s_priceFeed.version();
+    }
+
+    function getFunder(uint256 index) public view returns (address) { // Get the address of a funder at passed index
+        return s_funders[index];
+    }
+
+    function getOwner() public view returns (address) { // Get owner of contract
+        return i_owner;
+    }
+
+    function getPriceFeed() public view returns (AggregatorV3Interface) { // Get the address of the price feed being used
+        return s_priceFeed;
     }
 }

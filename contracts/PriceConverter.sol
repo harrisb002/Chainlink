@@ -2,7 +2,7 @@
 pragma solidity ^0.8.20;
 
 // Allows access the different methods of the pricefeed on the address (contract) that is passed in
-import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol"; 
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 // Handles all the price feed contract calls and doing all the conversions between Ethereum and USD
 library PriceConverter {
