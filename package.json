@@ -1,0 +1,22 @@
+{
+  "dependencies": {
+    "@chainlink/contracts": "^0.5.1",
+    "hardhat": "^2.12.4"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^2.0.0",
+    "ethers": "^5.7.2"
+  },
+  "name": "chainlink",
+  "description": "Simulates crowd funding money. Uses chainlink price feed to determine the conversion rate of fiat currency and Ethereum. This project is being deployed on the Avalanche network. Other networks such as Goerli are also supported if desirable. Project that shows how to make a crowd sourcing application that can understand pricing in USD using [Chainlink Price Feed](https://docs.chain.link/data-feeds).",
+  "version": "1.0.0",
+  "main": "hardhat.config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
